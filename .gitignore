@@ -1,0 +1,23 @@
+.DS_STORE
+	# Relevant to OSX env: It holds attributes/meta-data about the folder it resides in
+																					# REJECT IN REPO
+# ignore .env file | containing secret settings
+/.env
+
+**/*.pyc
+**/__pycache__
+**/urls.py
+
+# file with sublime-project exte
+*.sublime-project
+
+# ignore local environment file
+base_main/settings/local.py
+base_main/settings.py
+base_main/oldsettings.py
+	# checkout __init__.py in settings: ignoring local.py ensures that the try: fxn is ! exe 
+
+# ignore static files: 'IF' you DO NOT serve them within the django project 
+staticfiles/
+																					# ACCEPT IN REPO
+!.gitignore

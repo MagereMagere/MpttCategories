@@ -1,3 +1,4 @@
+{% load mptt_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,30 @@
 </head>
 <body>
 	<div>
-		<h1>nasdk</h1>
+		<h1>CATEGORIES</h1>
+		<ul>
+		  {% recursetree all_categories %}
+		    <li>
+		      <a href="/category/{{ node.slug }}">{{ node.title }}</a>
+		      {% if not node.is_leaf_node %}
+		        <ul class="children">
+		          {{ children }}
+		        </ul>
+		      {% endif %}
+		    </li>
+		  {% endrecursetree %}
+		</ul>
+
+		<h1>PRODUCT LIST</h1>
+
+		{% for specific_product in all_products %}
+			<ul>
+				<a href="{{ specific_product.get_absolute_url }}">{{ specific_product.name }}</a>
+				<li>
+					{{ specific_product.price }}
+				</li>
+			</ul>
+		{% endfor%}
 	</div>
 </body>
 </html>

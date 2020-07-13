@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -32,6 +33,9 @@ class Category(MPTTModel):
 	def get_recursive_product_count(self):
 		return Product.objects.filter(category__in=self.get_descendants(include_self=True)).count()
 
+	def get_absolute_url(self):
+		return reverse('home:path_to_products_by_category', args=[self.slug])
+
 class Product(models.Model):
 	category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
 	name = models.CharField(max_length=25, db_index=True)
@@ -52,3 +56,6 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def get_absolute_url(self):
+		return reverse('home:path_to_product_detail', args=[self.id, self.slug])

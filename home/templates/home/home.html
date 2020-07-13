@@ -10,7 +10,6 @@
 		<ul>
 		  {% recursetree all_categories %}
 		    <li>
-		      <a href="/category/{{ node.slug }}">{{ node.title }}</a>
 		      <a href="{% url 'home:path_to_products_by_category' node.slug %}">{{ node.title }}</a>
 		      {% if not node.is_leaf_node %}
 		        <ul class="children">

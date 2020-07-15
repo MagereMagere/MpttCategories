@@ -2,11 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>
+		{% if single_category %}
+			{{ single_category.title }}
+		{% else %}
+			Brand-New Furniture
+		{% endif %}
+	</title>
 </head>
 <body>
 	<div>
-		<h1>CATEGORIES</h1>
+		<h1>IN HEADER: CATEGORIES</h1>
 		<ul>
 		  {% recursetree all_categories %}
 		    <li>
@@ -20,7 +26,7 @@
 		  {% endrecursetree %}
 		</ul>
 
-		<h1>PRODUCT LIST</h1>
+		<h1>IN BODY: PRODUCT LIST</h1>
 
 		{% for specific_product in all_products %}
 			<ul>

@@ -18,10 +18,12 @@ def products_list(request, category_slug=None):
 	}
 	return render(request, 'home/home.html', context)
 
-# https://stackoverflow.com/questions/58145819/count-all-products-in-all-subcategories-recursively
-
 def product_detail(request, id, slug):
+	categories = Category.objects.all()
 	product = get_object_or_404(Product, id=id, slug=slug, available=True)
 
-	context = {'product': product}
+	context = {
+		'all_categories': categories,
+		'product': product
+	}
 	return render(request, 'home/detail.html', context)

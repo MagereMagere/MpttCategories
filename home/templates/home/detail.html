@@ -1,11 +1,29 @@
-{% load static %}
+{% load mptt_tags %}
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>
+		Details: {{ product.name }}
+	</title>
 </head>
 <body>
+		<h1>IN HEADER: CATEGORIES</h1>
+		<ul>
+		  {% recursetree all_categories %}
+		    <li>
+		      <a href="{% url 'home:path_to_products_by_category' node.slug %}">{{ node.title }}</a>
+		      {% if not node.is_leaf_node %}
+		        <ul class="children">
+		          {{ children }}
+		        </ul>
+		      {% endif %}
+		    </li>
+		  {% endrecursetree %}
+		</ul>
+
+	<h1>IN BODY: PRODUCT DETAIL</h1>
+
 	<div class="product-detail">
 		<h1>{{ product.name }}</h1>
 		<h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>

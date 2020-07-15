@@ -6,6 +6,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 # Create your models here.
 class Category(MPTTModel):
 	title = models.CharField(max_length=50, db_index=True)
+		# consider adding choices here: RESEARCH 
+		
 	parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 	slug = models.SlugField(max_length=50, unique=True)
 

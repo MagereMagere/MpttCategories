@@ -1,7 +1,7 @@
-##TO DO
+##PROBLEMS
 
 home: models.py
------Add choices to Category class title field
+-----adding choices: class Category:
 
 home: templates/home.html ++ templates/detail.html
 
